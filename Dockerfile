@@ -7,8 +7,6 @@ LABEL org.opencontainers.image.title = "Debug Container for Windows" \
       org.opencontainers.image.url = "ghcr.io/pichuang/debug-windows-container:master" \
       org.opencontainers.image.documentation = "https://github.com/pichuang/debug-windows-container"
 
-COPY tools C:\tools
-
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install Chocolatey CLI
