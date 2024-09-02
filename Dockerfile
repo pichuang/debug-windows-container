@@ -13,7 +13,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN New-Item -ItemType Directory -Path C:\scripts
 
 # Copy the tools folder to the container
-COPY scripts C:\scripts
+COPY scripts C:/scripts
 
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
