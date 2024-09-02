@@ -9,11 +9,17 @@ LABEL org.opencontainers.image.title = "Debug Container for Windows" \
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
+# Create the scripts folder
+RUN New-Item -ItemType Directory -Path C:\scripts
+
+# Copy the tools folder to the container
+COPY scripts C:\scripts
+
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
     iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); \
-    choco install -y ntttcp netcat python3 git wget; \
-    # choco install -y windows-adk-deploy ntttcp netcat python3 git wget; \
+    choco install -y ntttcp netcat python3 git wget vim; \
+    # choco install -y windows-adk-deploy ntttcp netcat python3 git wget vim; \
     choco cache remove; \
     # Install pip
     py -m ensurepip --upgrade
