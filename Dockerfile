@@ -13,13 +13,8 @@ RUN @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -I
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN powershell.exe -Command \
-    choco install -y windows-adk-deploy ntttcp ; \
+    choco install -y wget; \
+    # choco install -y windows-adk-deploy ntttcp netcat python3 git wget; \
     choco cache remove;
-
-# # Install  Windows Assessment and Deployment Kit (Windows ADK) for Windows Performance Recorder (WPR)
-# RUN powershell.exe -Command \
-#     Invoke-WebRequest "https://go.microsoft.com/fwlink/?linkid=2271337" -OutFile c:\adksetup.exe ; \
-#     Start-Process c:\adksetup.exe /quiet /installpath c:\adk -Wait ; \
-#     Remove-Item c:\adksetup.exe -Force
 
 CMD [ "powershell", "-Command", "Start-Sleep", "2147483" ]
