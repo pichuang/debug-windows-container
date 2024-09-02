@@ -9,20 +9,13 @@ LABEL org.opencontainers.image.title = "Debug Container for Windows" \
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-# Install Chocolatey CLI
-# https://docs.chocolatey.org/en-us/choco/setup/#requirements
-# RUN powershell.exe -Command Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-# RUN powershell.exe -Command \
-#     choco install -y ntttcp netcat python3 git wget; \
-#     # choco install -y windows-adk-deploy ntttcp netcat python3 git wget; \
-#     choco cache remove;
-
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
     iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); \
     choco install -y ntttcp netcat python3 git wget; \
-    choco cache remove
-
+    # choco install -y windows-adk-deploy ntttcp netcat python3 git wget; \
+    choco cache remove; \
+    # Install pip
+    py -m ensurepip --upgrade
 
 CMD [ "powershell", "-Command", "Start-Sleep", "2147483" ]

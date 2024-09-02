@@ -1,5 +1,13 @@
 # Debug-Windows-Container
 
+This container can be thought of as the administrator’s shell. Many of the debugging tools that an administrator might use to diagnose problems on the host are in this container.
+
+## Download
+
+```shell
+docker pull ghcr.io/pichuang/debug-windows-container:main
+```
+
 ## Reference
 
 - [Optimize Windows Dockerfiles][1]
