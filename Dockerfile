@@ -16,8 +16,8 @@ RUN powershell.exe -Command Set-ExecutionPolicy Bypass -Scope Process -Force; [S
 # RUN @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
 RUN powershell.exe -Command \
-    choco install -y wget; \
-    # choco install -y windows-adk-deploy ntttcp netcat python3 git wget; \
+    # choco install -y wget; \
+    choco install -y windows-adk-deploy ntttcp netcat python3 git wget; \
     choco cache remove;
 
 CMD [ "powershell", "-Command", "Start-Sleep", "2147483" ]
