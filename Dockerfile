@@ -15,7 +15,6 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 
 # Install  Windows Assessment and Deployment Kit (Windows ADK) for Windows Performance Recorder (WPR)
 RUN powershell.exe -Command \
-    $ErrorActionPreference = 'Stop'; \
     Invoke-WebRequest "https://go.microsoft.com/fwlink/?linkid=2271337" -OutFile c:\adksetup.exe ; \
     Start-Process c:\adksetup.exe /quiet /installpath c:\adk -Wait ; \
     Remove-Item c:\adksetup.exe -Force
