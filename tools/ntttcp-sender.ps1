@@ -1,5 +1,5 @@
 
-$sender = "10.0.0.5"
+$sender = "10.224.1.111"
 # [<number of VM cores> x 2]
 $threads = 4
 $duration = 10
